@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# © 2006-2007 Matt Sicker
+# This program is Free Software; you may copy, modify, and distribute it under
+# the terms of the GNU General Public License version 3, or (at your option)
+# any later version published by the Free Software Foundation.
+# If you did not receive a copy of the GPL with this distribution, you can
+# download the latest version at <http://www.gnu.org/licenses/gpl.txt> or write
+# to:
+# Free Software Foundation, Inc.,
+# 51 Franklin St - Fifth Floor,
+# Boston, MA 02110-1301 USA
+#
+# BLAH BLAH WARRANTY:
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+PS_CMD="$(which ps)"
+PS_OPTS="aux"
+GREP_CMD="$(which grep)"
+GREP_OPTS=""
+
+PSGREP_VERSION="1.0.3"
+
+usage()
+{
+    echo "Usage: $0 [options] <search terms>
+
+Options:
+    -b          Search using BSD's ps format (aux) [default]
+    -l          Search using Linux's ps format (-ef)
+    -s          Search using simplified format (PID, user, command)
+    -o <opts>   Search using custom ps output format
+    -e          Use extended regexps (egrep)
+    -p          Use perl regexps (grep -P)
+    -h          View this message
+    -v          View version information"
+    exit 1
+}
+
+version_info()
+{
+    echo "psgrep version ${PSGREP_VERSION}
+© 2006-2007 Matt Sicker
+This program comes with ABSOLUTELY NO WARRANTY; for details, see the included
+COPYING file.  This is free software, and you are welcome to redistribute it
+under certain conditions; see the included COPYING file for details.  In short,
+you may copy, modify, and re/distribute it under the terms of the GNU General
+Public License version 3, or (at your option) any later version."
+    exit 2
+}
+
+[ $# -lt 1 ] && usage
+
+while getopts "blso:ephv" opt; do
+    case $opt in
+        h) usage;;
+        v) version_info;;
+        b) PS_OPTS="aux";;
+        l) PS_OPTS="-ef";;
+        s) PS_OPTS="-eo pid,euser,comm";;
+        o) PS_OPTS="-eo $OPTARG";;
+        e) GREP_CMD="${GREP_CMD} -E";;
+        p) GREP_CMD="${GREP_CMD} -P";;
+    esac
+done
+
+# now the actual execution
+# HOLY SHIT did it take forever to figure out how to use the rest of the command
+$PS_CMD $PS_OPTS | $GREP_CMD ${@:$OPTIND} | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0"

@@ -1,0 +1,16 @@
+1.0.3:
+* Updated license to GPLv3.
+* New run-time option, -p, for Perl regular expressions.
+* New man page!
+* Updated install script to use bash as well as to install the man page.
+
+1.0.2:
+* Since Ubuntu changed /bin/sh to dash instead of bash, I've realised that
+this does indeed use bashisms.  Thereform, I have changed the shell to use
+/usr/bin/env bash instead.
+
+1.0.1:
+* Doesn't show itself in process list.
+
+1.0:
+* Initial release.

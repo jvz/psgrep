@@ -1,0 +1,98 @@
+.\" vim:syn=groff:
+.\" Man page for psgrep
+.TH PSGREP 1 "2007-06-30" "" "psgrep Manual"
+.
+.SH NAME
+psgrep \- search process list using the power of grep
+.
+.SH SYNOPSIS
+psgrep [options] \fIPATTERN\fR
+.
+.SH DESCRIPTION
+.PP
+psgrep is a small Bash shell script that searches the process list (as obtained
+by
+.BR ps (1)
+) using the awesome utility
+.BR grep (1)
+for its power.  It is more useful than
+.BR pgrep (1)
+because not only can it search the process list and return a PID, it can give
+more useful information such as its UID, GID, memory/CPU usage, niceness, and
+anything else supported by ps.  It is also more useful than using something like
+.RS
+ps aux | grep \fIPATTERN\fR
+.RE
+because it also prevents the matching of the ps or grep processes used for
+searching the list.  In fact, the main reasoning behind the original writing
+of this script was entirely due to this annoyance with the given method.
+.
+.SH OPTIONS
+.TP
+.B -b
+Search the process list using BSD's \*(lqps aux\*(rq format (default).
+.
+.TP
+.B -l
+Search the process list using Linux's \*(lqps -ef\*(rq format.
+.
+.TP
+.B -s
+Search the process list using a simplified format: \*(lq\fIPID, user, command\fR\*(rq.
+.
+.TP
+.BI -o " OUTFORMAT"
+Search using a custom ps output format as specified by \fIOUTFORMAT\fR.  See
+.BR ps (1)
+and its \fB-o\fR option as well as its \fBSTANDARD FORMAT SPECIFIERS\fR section
+for more information on how to use this.
+.\" XXX: should we just yank that section from ps(1) and put it here?
+.
+.TP
+.B -e
+Search using extended regular expressions (i.e., using \*(lqegrep\*(rq or
+\*(lqgrep -E\*(rq).
+.
+.TP
+.B -p
+Search using Perl regular expressions (i.e., using \*(lqgrep -P\*(rq).
+.
+.TP
+.B -h
+Display a brief usage message, and exit with a status of 1.
+.
+.TP
+.B -v
+Display version and licensing info, and exit with a status of 2.
+.
+.SH BUGS
+No known bugs, but if you find any, please email them to <boards@gmail.com>.
+.
+.SH AUTHORS
+psgrep was written by Matt Sicker with help from your local manpages.
+.
+.SH COPYRIGHT
+.PP
+psgrep is Copyright (C) 2006-2007 Matt Sicker.
+.PP
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+.PP
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+.PP
+If you wish to make use of this program with a license other than the GPL,
+please contact the author at <boards@gmail.com> with a request (and a
+reason of course!).
+.
+.SH SEE ALSO
+.BR ps (1) ,
+.BR grep (1) ,
+.BR pgrep (1)
