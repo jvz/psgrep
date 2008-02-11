@@ -54,7 +54,7 @@ Public License version 3, or (at your option) any later version."
 
 [ $# -lt 1 ] && usage
 
-while getopts "blso:ephv" opt; do
+while getopts "blso:iephv" opt; do
     case $opt in
         h) usage;;
         v) version_info;;
