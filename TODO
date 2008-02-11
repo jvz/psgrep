@@ -1,2 +1,3 @@
 * Add more grep options.
+    - Add the option to use arbitrary grep options.
 * Add option to use awk.
