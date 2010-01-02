@@ -12,5 +12,5 @@ The default PREFIX is /usr/local"
 
 [ $# -ge 1 ] && usage
 
-install psgrep ${PREFIX:-/usr/local}/bin/psgrep
-install -m0644 psgrep.1 ${PREFIX:-/usr/local}/share/man/man1/psgrep.1
+install -D -m755 psgrep ${PREFIX:-/usr/local}/bin/psgrep
+install -D -m644 psgrep.1 ${PREFIX:-/usr/local}/share/man/man1/psgrep.1
