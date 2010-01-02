@@ -1,3 +1,7 @@
+1.0.4:
+* New run-time option, -i, for caseless pattern matching.
+* Fixed install bug involving nonexistent directories.
+
 1.0.3:
 * Updated license to GPLv3.
 * New run-time option, -p, for Perl regular expressions.
