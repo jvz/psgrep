@@ -1,9 +1,9 @@
 .\" vim:syn=groff:
 .\" Man page for psgrep
-.TH PSGREP 1 "2007-06-30" "" "psgrep Manual"
+.TH PSGREP 1 "2010-01-02" "" "psgrep Manual"
 .
 .SH NAME
-psgrep \- search process list using the power of grep
+psgrep \- search the process list using the power of grep
 .
 .SH SYNOPSIS
 psgrep [options] \fIPATTERN\fR
@@ -29,8 +29,14 @@ of this script was entirely due to this annoyance with the given method.
 .
 .SH OPTIONS
 .TP
+.B -a
+Search the process list using BSD's \*(lqps aux\*(rq format. This option
+includes all users' processes in the search.
+.
+.TP
 .B -b
-Search the process list using BSD's \*(lqps aux\*(rq format (default).
+Search the process list using BSD's \*(lqps ux\*(rq format (\fBdefault\fR).
+This option only includes the running user's processes.
 .
 .TP
 .B -l
@@ -62,6 +68,9 @@ Search using extended regular expressions (i.e., using \*(lqegrep\*(rq or
 Search using Perl regular expressions (i.e., using \*(lqgrep -P\*(rq).
 .
 .TP
+.B -n
+Don't display \fBps\fR(1) header information.
+.TP
 .B -h
 Display a brief usage message, and exit with a status of 1.
 .
@@ -70,14 +79,15 @@ Display a brief usage message, and exit with a status of 1.
 Display version and licensing info, and exit with a status of 2.
 .
 .SH BUGS
-No known bugs, but if you find any, please email them to <boards@gmail.com>.
+No known bugs, but if you find any, please email them to <boards@gmail.com>
+or submit them to <http://code.google.com/p/psgrep/issues/list>
 .
 .SH AUTHORS
 psgrep was written by Matt Sicker with help from your local manpages.
 .
 .SH COPYRIGHT
 .PP
-psgrep is Copyright (C) 2006-2007 Matt Sicker.
+psgrep is Copyright (C) 2006-2010 Matt Sicker.
 .PP
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

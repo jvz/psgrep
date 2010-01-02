@@ -17,7 +17,7 @@
 # GNU General Public License for more details.
 
 PS_CMD="$(which ps)"
-PS_OPTS="aux"
+PS_OPTS="ux"
 GREP_CMD="$(which grep)"
 GREP_OPTS=""
 
@@ -28,16 +28,19 @@ usage()
     echo "Usage: $0 [options] <search terms>
 
 Options:
-    -b          Search using BSD's ps format (aux) [default]
+    -n          Don't print header
+    -a          Search processes of all users
+    -b          Search using BSD's ps format (ux) [default]
     -l          Search using Linux's ps format (-ef)
     -s          Search using simplified format (PID, user, command)
     -o <opts>   Search using custom ps output format
     -i          Ignore case in searches
     -e          Use extended regexps (egrep)
+    -i          Use case-insensitive regexps (grep -i)
     -p          Use perl regexps (grep -P)
     -h          View this message
     -v          View version information"
-    exit 1
+    exit 0
 }
 
 version_info()
@@ -54,20 +57,27 @@ Public License version 3, or (at your option) any later version."
 
 [ $# -lt 1 ] && usage
 
-while getopts "blso:iephv" opt; do
+while getopts "nablso:iephv" opt; do
     case $opt in
         h) usage;;
         v) version_info;;
-        b) PS_OPTS="aux";;
+        n) NO_HEADER=1;;
+        a) PS_OPTS="aux";;
+        b) PS_OPTS="ux";;
         l) PS_OPTS="-ef";;
         s) PS_OPTS="-eo pid,euser,comm";;
         o) PS_OPTS="-eo $OPTARG";;
         i) GREP_CMD="${GREP_CMD} -i";;
         e) GREP_CMD="${GREP_CMD} -E";;
+        i) GREP_CMD="${GREP_CMD} -i";;
         p) GREP_CMD="${GREP_CMD} -P";;
     esac
 done
 
 # now the actual execution
-# HOLY SHIT did it take forever to figure out how to use the rest of the command
-$PS_CMD $PS_OPTS | $GREP_CMD ${@:$OPTIND} | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0"
+HEADER=$($PS_CMD $PS_OPTS | head -n1)
+RESULT=$($PS_CMD $PS_OPTS | $GREP_CMD -- "${*:$OPTIND}" | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0")
+if [ "$RESULT" ]; then
+    [ ! "$NO_HEADER" ] && echo "$HEADER"
+    echo "$RESULT"
+fi
