@@ -1,3 +1,9 @@
+1.0.5:
+* Changed default option to search only user's processes.
+* Added option to search all user's processes.
+* Added header output from ps. Option to disable.
+* Fixed bug where processes with a leading dash couldn't be grep'd for.
+
 1.0.4:
 * New run-time option, -i, for caseless pattern matching.
 * Fixed install bug involving nonexistent directories.
