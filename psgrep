@@ -36,7 +36,6 @@ Options:
     -o <opts>   Search using custom ps output format
     -i          Ignore case in searches
     -e          Use extended regexps (egrep)
-    -i          Use case-insensitive regexps (grep -i)
     -p          Use perl regexps (grep -P)
     -h          View this message
     -v          View version information"
@@ -69,7 +68,6 @@ while getopts "nablso:iephv" opt; do
         o) PS_OPTS="-eo $OPTARG";;
         i) GREP_CMD="${GREP_CMD} -i";;
         e) GREP_CMD="${GREP_CMD} -E";;
-        i) GREP_CMD="${GREP_CMD} -i";;
         p) GREP_CMD="${GREP_CMD} -P";;
     esac
 done
