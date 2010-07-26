@@ -1,3 +1,6 @@
+1.0.6:
+* Fixed install.sh to work on non-GNU systems (e.g., Mac OS X).
+
 1.0.5:
 * Changed default option to search only user's processes.
 * Added option to search all user's processes.
