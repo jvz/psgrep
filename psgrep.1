@@ -1,6 +1,6 @@
 .\" vim:syn=groff:
 .\" Man page for psgrep
-.TH PSGREP 1 "2010-01-02" "" "psgrep Manual"
+.TH PSGREP 1 "2011-07-11" "" "psgrep Manual"
 .
 .SH NAME
 psgrep \- search the process list using the power of grep
@@ -37,6 +37,13 @@ includes all users' processes in the search.
 .B -b
 Search the process list using BSD's \*(lqps ux\*(rq format (\fBdefault\fR).
 This option only includes the running user's processes.
+.
+.TP
+.B -d
+Search the process list, but only output matching process ID numbers. Similar
+in functionality to
+.BR pgrep (1)
+found on some common POSIX systems.
 .
 .TP
 .B -l

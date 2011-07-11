@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# © 2006-2010 Matt Sicker
+# © 2006-2011 Matt Sicker
 # This program is Free Software; you may copy, modify, and distribute it under
 # the terms of the GNU General Public License version 3, or (at your option)
 # any later version published by the Free Software Foundation.
@@ -34,6 +34,7 @@ Options:
     -l          Search using Linux's ps format (-ef)
     -s          Search using simplified format (PID, user, command)
     -o <opts>   Search using custom ps output format
+    -d          Search using PID-only format (similar to pgrep)
     -i          Ignore case in searches
     -e          Use extended regexps (egrep)
     -p          Use perl regexps (grep -P)
@@ -45,7 +46,7 @@ Options:
 version_info()
 {
     echo "psgrep version ${PSGREP_VERSION}
-© 2006-2010 Matt Sicker
+© 2006-2011 Matt Sicker
 This program comes with ABSOLUTELY NO WARRANTY; for details, see the included
 COPYING file.  This is free software, and you are welcome to redistribute it
 under certain conditions; see the included COPYING file for details.  In short,
@@ -56,7 +57,8 @@ Public License version 3, or (at your option) any later version."
 
 [ $# -lt 1 ] && usage
 
-while getopts "nablso:iephv" opt; do
+PID_ONLY=0
+while getopts "nablso:iephvd" opt; do
     case $opt in
         h) usage;;
         v) version_info;;
@@ -69,12 +71,15 @@ while getopts "nablso:iephv" opt; do
         i) GREP_CMD="${GREP_CMD} -i";;
         e) GREP_CMD="${GREP_CMD} -E";;
         p) GREP_CMD="${GREP_CMD} -P";;
+        d) PS_OPTS="-eo pid,comm";
+           NO_HEADER=1;
+           PID_ONLY=1;;
     esac
 done
 
 # now the actual execution
 HEADER=$($PS_CMD $PS_OPTS | head -n1)
-RESULT=$($PS_CMD $PS_OPTS | $GREP_CMD -- "${*:$OPTIND}" | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0")
+RESULT=$($PS_CMD $PS_OPTS | $GREP_CMD -- "${*:$OPTIND}" | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0" | awk '{print $'$PID_ONLY' }')
 if [ "$RESULT" ]; then
     [ ! "$NO_HEADER" ] && echo "$HEADER"
     echo "$RESULT"
