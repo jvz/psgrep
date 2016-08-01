@@ -1,15 +1,19 @@
-To install, just execute ./install.sh.  If you wish to install psgrep somewhere
-other than /usr/local/bin, set the $PREFIX variable like so:
-PREFIX=/usr sudo ./install.sh
-The default $PREFIX is /usr/local
+To install, just execute `./install.sh`.  If you wish to install `psgrep`
+somewhere other than `/usr/local/bin`, set the `$PREFIX` variable like so:
 
-If you, for example, install psgrep to your home directory, don't forget to set
-your PATH to include "~/bin" as well as your MANPATH (or ~/.manpath) to include
-"~/share/man".
+    PREFIX=/usr sudo ./install.sh
+
+The default `$PREFIX` is `/usr/local`
+
+If you, for example, install `psgrep` to your home directory, don't forget to set
+your `PATH` to include `~/bin` as well as your `MANPATH` (or `~/.manpath`) to include
+`~/share/man`.
 
 If you wish to install this as an actual package on your system, you will need
-the checkinstall program.  General syntax you can follow (just accept defaults):
+the `checkinstall` program.  General syntax you can follow (just accept defaults):
+
     PREFIX=/usr sudo checkinstall ./install.sh
 
 For example, on my Debian/[K]Ubuntu-based system, I could run:
+
     PREFIX=/usr sudo checkinstall -D -A all --gzman ./install.sh
