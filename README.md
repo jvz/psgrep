@@ -1,4 +1,6 @@
 Download and extract the [latest release](https://github.com/jvz/psgrep/releases/latest).
+Then, re-read what's in there if it's different than the following:
+
 To install, just execute `./install.sh`.  If you wish to install `psgrep`
 somewhere other than `/usr/local/bin`, set the `$PREFIX` variable like so:
 
