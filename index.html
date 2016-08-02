@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>psgrep by jvz</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>psgrep</h1>
+        <h2>A simple little shell script to help with the &quot;ps aux | grep&quot; idiom.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/jvz/psgrep/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/jvz/psgrep/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/jvz/psgrep" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p>Download and extract the <a href="https://github.com/jvz/psgrep/releases/latest">latest release</a>.</p>
+
+<p>To install, just execute <code>./install.sh</code>.  If you wish to install <code>psgrep</code>
+somewhere other than <code>/usr/local/bin</code>, set the <code>$PREFIX</code> variable like so:</p>
+
+<pre><code>PREFIX=/usr sudo ./install.sh
+</code></pre>
+
+<p>The default <code>$PREFIX</code> is <code>/usr/local</code></p>
+
+<p>If you, for example, install <code>psgrep</code> to your home directory, don't forget to set
+your <code>PATH</code> to include <code>~/bin</code> as well as your <code>MANPATH</code> (or <code>~/.manpath</code>) to include
+<code>~/share/man</code>.</p>
+
+<p>If you wish to install this as an actual package on your system, you will need
+the <code>checkinstall</code> program.  General syntax you can follow (just accept defaults):</p>
+
+<pre><code>PREFIX=/usr sudo checkinstall ./install.sh
+</code></pre>
+
+<p>For example, on my Debian/[K]Ubuntu-based system, I could run:</p>
+
+<pre><code>PREFIX=/usr sudo checkinstall -D -A all --gzman ./install.sh
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
