@@ -1,5 +1,6 @@
 1.0.7:
 * Updated README and man page for GitHub. See issue #3.
+* Small code cleanups.
 
 1.0.6:
 * Fixed install.sh to work on non-GNU systems (e.g., Mac OS X).
