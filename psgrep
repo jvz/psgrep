@@ -55,32 +55,36 @@ Public License version 3, or (at your option) any later version."
     exit 2
 }
 
-[ $# -lt 1 ] && usage
+main()
+{
+    [ $# -lt 1 ] && usage
 
-PID_ONLY=0
-while getopts "nablso:iephvd" opt; do
-    case $opt in
-        h) usage;;
-        v) version_info;;
-        n) NO_HEADER=1;;
-        a) PS_OPTS="aux";;
-        b) PS_OPTS="ux";;
-        l) PS_OPTS="-ef";;
-        s) PS_OPTS="-eo pid,euser,comm";;
-        o) PS_OPTS="-eo $OPTARG";;
-        i) GREP_CMD="${GREP_CMD} -i";;
-        e) GREP_CMD="${GREP_CMD} -E";;
-        p) GREP_CMD="${GREP_CMD} -P";;
-        d) PS_OPTS="-eo pid,comm";
-           NO_HEADER=1;
-           PID_ONLY=1;;
-    esac
-done
+    PID_ONLY=0
+    while getopts "nablso:iephvd" opt; do
+        case $opt in
+            h) usage;;
+            v) version_info;;
+            n) NO_HEADER=1;;
+            a) PS_OPTS="aux";;
+            b) PS_OPTS="ux";;
+            l) PS_OPTS="-ef";;
+            s) PS_OPTS="-eo pid,euser,comm";;
+            o) PS_OPTS="-eo $OPTARG";;
+            i) GREP_CMD="${GREP_CMD} -i";;
+            e) GREP_CMD="${GREP_CMD} -E";;
+            p) GREP_CMD="${GREP_CMD} -P";;
+            d) PS_OPTS="-eo pid,comm";
+               NO_HEADER=1;
+               PID_ONLY=1;;
+        esac
+    done
 
-# now the actual execution
-HEADER=$($PS_CMD $PS_OPTS | head -n1)
-RESULT=$($PS_CMD $PS_OPTS | $GREP_CMD -- "${*:$OPTIND}" | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0" | awk '{print $'$PID_ONLY' }')
-if [ "$RESULT" ]; then
-    [ ! "$NO_HEADER" ] && echo "$HEADER"
-    echo "$RESULT"
-fi
+    HEADER=$($PS_CMD $PS_OPTS | head -n1)
+    RESULT=$($PS_CMD $PS_OPTS | $GREP_CMD -- "${*:$OPTIND}" | $GREP_CMD -v "$GREP_CMD" | $GREP_CMD -v "$0" | awk '{print $'$PID_ONLY' }')
+    if [ "$RESULT" ]; then
+        [ ! "$NO_HEADER" ] && echo "$HEADER"
+        echo "$RESULT"
+    fi
+}
+
+main "$@"
