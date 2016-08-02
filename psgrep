@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# © 2006-2011 Matt Sicker
+# © 2006-2016 Matt Sicker
 # This program is Free Software; you may copy, modify, and distribute it under
 # the terms of the GNU General Public License version 3, or (at your option)
 # any later version published by the Free Software Foundation.
@@ -46,7 +46,7 @@ Options:
 version_info()
 {
     echo "psgrep version ${PSGREP_VERSION}
-© 2006-2011 Matt Sicker
+© 2006-2016 Matt Sicker
 This program comes with ABSOLUTELY NO WARRANTY; for details, see the included
 COPYING file.  This is free software, and you are welcome to redistribute it
 under certain conditions; see the included COPYING file for details.  In short,
