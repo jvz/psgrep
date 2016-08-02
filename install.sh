@@ -14,12 +14,16 @@ ${HOME}/.local
     exit 1
 }
 
-[ $# -ge 1 ] && usage
+main()
+{
+    [ $# -ge 1 ] && usage
 
-PREFIX="${PREFIX:-/usr/local}"
+    PREFIX="${PREFIX:-/usr/local}"
 
-# fixes issue 3: non-GNU install(1) doesn't support -D
-install -d "${PREFIX}/bin"
-install -d "${PREFIX}/share/man/man1"
-install -m755 psgrep ${PREFIX:-/usr/local}/bin/psgrep
-install -m644 psgrep.1 ${PREFIX:-/usr/local}/share/man/man1/psgrep.1
+    /usr/bin/install -d "${PREFIX}/bin"
+    /usr/bin/install -d "${PREFIX}/share/man/man1"
+    /usr/bin/install -m755 psgrep ${PREFIX:-/usr/local}/bin/psgrep
+    /usr/bin/install -m644 psgrep.1 ${PREFIX:-/usr/local}/share/man/man1/psgrep.1
+}
+
+main "$@"
