@@ -20,3 +20,7 @@ the `checkinstall` program.  General syntax you can follow (just accept defaults
 For example, on my Debian/[K]Ubuntu-based system, I could run:
 
     PREFIX=/usr sudo checkinstall -D -A all --gzman ./install.sh
+
+For usage information, run
+
+    man psgrep
