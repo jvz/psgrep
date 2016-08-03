@@ -1,3 +1,7 @@
+1.0.9:
+* Fixed the -h option to exit with status 1 as the man page says it should.
+See issue #5.
+
 1.0.8:
 * Fixed the -s option on OSX/BSD. See issue #4.
 
