@@ -21,7 +21,7 @@ PS_OPTS="ux"
 GREP_CMD="$(which grep)"
 GREP_OPTS=""
 
-PSGREP_VERSION="master"
+PSGREP_VERSION="1.0.8"
 
 usage()
 {
