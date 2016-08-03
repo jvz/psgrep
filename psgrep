@@ -40,7 +40,7 @@ Options:
     -p          Use perl regexps (grep -P)
     -h          View this message
     -v          View version information"
-    exit 0
+    exit 1
 }
 
 version_info()
