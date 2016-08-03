@@ -68,7 +68,7 @@ main()
             a) PS_OPTS="aux";;
             b) PS_OPTS="ux";;
             l) PS_OPTS="-ef";;
-            s) PS_OPTS="-eo pid,euser,comm";;
+            s) PS_OPTS="-eo pid,user,comm";;
             o) PS_OPTS="-eo $OPTARG";;
             i) GREP_CMD="${GREP_CMD} -i";;
             e) GREP_CMD="${GREP_CMD} -E";;
