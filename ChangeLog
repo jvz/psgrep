@@ -1,3 +1,6 @@
+1.0.8:
+* Fixed the -s option on OSX/BSD. See issue #4.
+
 1.0.7:
 * Updated README and man page for GitHub. See issue #3.
 * Small code cleanups.
