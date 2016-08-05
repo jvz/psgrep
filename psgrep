@@ -33,7 +33,7 @@ Options:
     -b          Search using BSD's ps format (ux) [default]
     -l          Search using Linux's ps format (-ef)
     -s          Search using simplified format (PID, user, command)
-    -o <opts>   Search using custom ps output format
+    -o <opts>   Search using custom ps output format; see ps(1) man page
     -d          Search using PID-only format (similar to pgrep)
     -i          Ignore case in searches
     -e          Use extended regexps (egrep)
