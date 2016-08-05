@@ -12,15 +12,6 @@ If you, for example, install `psgrep` to your home directory, don't forget to se
 your `PATH` to include `~/bin` as well as your `MANPATH` (or `~/.manpath`) to include
 `~/share/man`.
 
-If you wish to install this as an actual package on your system, you will need
-the `checkinstall` program.  General syntax you can follow (just accept defaults):
-
-    PREFIX=/usr sudo checkinstall ./install.sh
-
-For example, on my Debian/[K]Ubuntu-based system, I could run:
-
-    PREFIX=/usr sudo checkinstall -D -A all --gzman ./install.sh
-
 For usage information, run
 
     man psgrep
